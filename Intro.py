@@ -45,7 +45,7 @@ with st.sidebar:
         "desarrolladas con Inteligencia Artificial, que abarcan desde el procesamiento de texto y voz "
         "hasta visión por computador y análisis de datos."
     )
-    st.divider()
+    st.markdown("---")
     
     # Filtro por Categorías
     categoria = st.selectbox(
@@ -53,7 +53,7 @@ with st.sidebar:
         ["Todas", "Audio & Voz", "Texto & NLP", "Visión por Computador"]
     )
 
-# Definición de la lista de aplicaciones
+# Definición de la lista de aplicaciones (11 aplicaciones en total)
 apps = [
     {
         "titulo": "Primera App Multimodal",
@@ -126,6 +126,22 @@ apps = [
         "descripcion": "Identificación y delimitación de múltiples objetos en imágenes mediante redes neuronales.",
         "url": "https://yolov5-8wnljwxjxrnepdslw7vua6.streamlit.app/",
         "etiqueta": "Detectar Objetos"
+    },
+    {
+        "titulo": "Chat PDF con LLM (RAG)",
+        "categoria": "Texto & NLP",
+        "icono": "📄",
+        "descripcion": "Agente conversacional basado en RAG para realizar consultas y preguntas sobre documentos PDF.",
+        "url": "https://chatpdf-rcydkkt5ppxrlxl8ixjfju.streamlit.app/",
+        "etiqueta": "Consultar PDF"
+    },
+    {
+        "titulo": "Interpretación de Imágenes (GPT-4o)",
+        "categoria": "Visión por Computador",
+        "icono": "👁️",
+        "descripcion": "Análisis multimodales e interpretación detallada de imágenes en tiempo real.",
+        "url": "https://visionapp-c8frnbrhc5lewgb8v4rgt6.streamlit.app/",
+        "etiqueta": "Interpretar Imagen"
     }
 ]
 
@@ -148,4 +164,3 @@ for i in range(0, len(apps_filtradas), cols_per_row):
                 st.caption(f"Categoría: **{app['categoria']}**")
                 st.write(app['descripcion'])
                 st.link_button(app['etiqueta'], app['url'], use_container_width=True)
-
