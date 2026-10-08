@@ -7,33 +7,14 @@ st.set_page_config(
     layout="wide"
 )
 
-# Estilos CSS de alto contraste en tonos Sage Green
+# Estilos CSS generales para la estructura y botones
 st.markdown("""
     <style>
-    /* Fondo principal y textos destacados */
+    /* Fondo principal */
     .stApp {
-        background-color: #FAFBF9;
+        background-color: #F8FAF8;
     }
     
-    /* Titulares con color verdecito profundo visible */
-    h1 {
-        color: #233329 !important;
-        text-align: center;
-        font-weight: 700;
-    }
-    
-    .stCaption {
-        color: #4A5D50 !important;
-    }
-
-    /* Estilo de las tarjetas */
-    div[data-testid="stContainer"] {
-        background-color: #FFFFFF !important;
-        border: 1px solid #C2D1C5 !important;
-        border-radius: 12px !important;
-        padding: 1rem;
-    }
-
     /* Botones principales en verde sage profundo */
     div.stButton > a, div.stLinkButton > a {
         background-color: #3B5243 !important;
@@ -48,30 +29,28 @@ st.markdown("""
         color: #FFFFFF !important;
     }
 
-    /* Texto de la barra lateral asegurado en color oscuro */
+    /* Fondo de la barra lateral */
     section[data-testid="stSidebar"] {
         background-color: #EBF0EC !important;
-    }
-    section[data-testid="stSidebar"] p, section[data-testid="stSidebar"] h1, section[data-testid="stSidebar"] h2, section[data-testid="stSidebar"] h3, section[data-testid="stSidebar"] label {
-        color: #1E2B23 !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Encabezado Principal
-st.title("Portafolio de Aplicaciones de IA 🌿✨")
-st.caption("Explora mis proyectos interactivos de Procesamiento de Lenguaje Natural, Visión por Computador y Multimodalidad")
+# Encabezado Principal (Con color forzado en verde oscuro)
+st.markdown('<h1 style="text-align: center; color: #1E2B23; font-weight: 700;">Portafolio de Aplicaciones de IA 🌿✨</h1>', unsafe_allow_html=True)
+st.markdown('<p style="text-align: center; color: #4A5D50; font-size: 1.1rem; margin-bottom: 2rem;">Explora mis proyectos interactivos de Procesamiento de Lenguaje Natural, Visión por Computador y Multimodalidad</p>', unsafe_allow_html=True)
 
 st.markdown("---")
 
 # Sidebar con perfil y descripción
 with st.sidebar:
-    st.header("👤 Mariangel Molina")
-    st.caption("Diseño Interactivo & Proyectos de IA")
-    st.write(
-        "Bienvenido a mi portafolio. Aquí encontrarás una colección de herramientas interactivas "
-        "desarrolladas con Inteligencia Artificial, que abarcan desde el procesamiento de texto y voz "
-        "hasta visión por computador y análisis de datos."
+    st.markdown('<h2 style="color: #1E2B23;">👤 Mariangel Molina</h2>', unsafe_allow_html=True)
+    st.markdown('<p style="color: #3B5243; font-weight: 600;">Diseño Interactivo & Proyectos de IA</p>', unsafe_allow_html=True)
+    st.markdown(
+        '<p style="color: #2D3A31;">Bienvenido a mi portafolio. Aquí encontrarás una colección de herramientas interactivas '
+        'desarrolladas con Inteligencia Artificial, que abarcan desde el procesamiento de texto y voz '
+        'hasta visión por computador y análisis de datos.</p>',
+        unsafe_allow_html=True
     )
     st.markdown("---")
     
@@ -179,7 +158,7 @@ if categoria != "Todas":
 else:
     apps_filtradas = apps
 
-# Renderizado de Grid de Tarjetas (3 columnas)
+# Renderizado de Grid de Tarjetas
 cols_per_row = 3
 for i in range(0, len(apps_filtradas), cols_per_row):
     cols = st.columns(cols_per_row)
@@ -188,7 +167,8 @@ for i in range(0, len(apps_filtradas), cols_per_row):
     for idx, app in enumerate(chunk):
         with cols[idx]:
             with st.container(border=True):
-                st.markdown(f"### {app['icono']} {app['titulo']}")
-                st.caption(f"Categoría: **{app['categoria']}**")
-                st.write(app['descripcion'])
+                # Título, categoría y descripción con colores oscuros forzados por HTML
+                st.markdown(f'<h3 style="color: #1E2B23; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem;">{app["icono"]} {app["titulo"]}</h3>', unsafe_allow_html=True)
+                st.markdown(f'<p style="color: #5A6B5D; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem;">Categoría: {app["categoria"]}</p>', unsafe_allow_html=True)
+                st.markdown(f'<p style="color: #2D3A31; font-size: 0.92rem; min-height: 50px;">{app["descripcion"]}</p>', unsafe_allow_html=True)
                 st.link_button(app['etiqueta'], app['url'], use_container_width=True)
